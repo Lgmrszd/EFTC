@@ -11,18 +11,10 @@ function Scene.new()
   return obj
 end
 setmetatable(Scene, {__call = Scene.new})
-
-function Scene:update(dt)
-end
-
-function Scene:draw()
-end
-
-function Scene:init()
-end
-
-function Scene:destroy()
-end
+function Scene:update(dt) end
+function Scene:draw() end
+function Scene:init() end
+function Scene:destroy() end
 
 function scm.update(dt)
   if not current_scene then
@@ -40,6 +32,7 @@ end
 
 function scm.activate_scene(scene)
   current_scene = scene
+  current_scene.init()
 end
 
 scm.Scene = Scene
