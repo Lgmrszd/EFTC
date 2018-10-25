@@ -1,4 +1,16 @@
+scm = require("scenes_manager")
+b_test = require("scenes/b_test")
+
+scm.activate_scene(b_test)
+
+function love.keypressed(key, scancode, isrepeat)
+  if key == "rctrl" then debug.debug() end
+end
+
+function love.update(dt)
+  scm.update(dt)
+end
+
 function love.draw()
-  love.graphics.print("Hello World!", 400, 300)
-  love.graphics.print("lal", 0, 0)
+  scm.draw()
 end
