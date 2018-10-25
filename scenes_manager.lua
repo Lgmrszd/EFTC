@@ -1,16 +1,16 @@
 local scm = {}
-local scenes = {}
 
 local Scene = {}
 Scene.__index = Scene
+setmetatable(Scene, {__call = Scene.new})
 
 
-function Scene.new(_name)
-  obj = {name = _name, data = {}}
+function Scene.new()
+  obj = {data = {}}
   setmetatable(obj, Scene)
-  scenes[_name] = obj
   return obj
 end
+setmetatable(Scene, {__call = Scene.new})
 
 function Scene:update(dt)
 end

@@ -1,7 +1,7 @@
 scm = require("scenes_manager")
-b_test = require("scenes/b_test")
+menu = require("scenes/main_menu")
 
-scm.activate_scene(b_test)
+scm.activate_scene(menu)
 
 function love.keypressed(key, scancode, isrepeat)
   if key == "rctrl" then debug.debug() end
