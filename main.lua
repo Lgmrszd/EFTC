@@ -1,13 +1,12 @@
 scm = require("scenes_manager")
 menu = require("scenes/main_menu")
-assets = require("assets")
+local assets = require("assets")
 shader = require("shader_test")
 
-
 function love.load()
-  -- assets.load_assets()
-  -- scm.activate_scene(menu)
-  shader.load()
+  assets.load_assets()
+  scm.activate_scene(menu)
+  -- shader.load()
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -15,10 +14,11 @@ function love.keypressed(key, scancode, isrepeat)
 end
 
 function love.update(dt)
-  -- scm.update(dt)
+  -- shader.update(dt)
+  scm.update(dt)
 end
 
 function love.draw()
-  shader.draw()
-  -- scm.draw()
+  -- shader.draw()
+  scm.draw()
 end

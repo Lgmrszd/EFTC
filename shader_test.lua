@@ -1,13 +1,15 @@
 local lib = {}
 
 function lib.load()
-    sh_of = love.graphics.newShader("shader_test.glsl")
-    my_sh = love.graphics.newShader("shader_test3.glsl")
+    my_sh = love.graphics.newShader("shader_borders.glsl")
     width = love.graphics.getWidth()
     height = love.graphics.getHeight()
     im = love.graphics.newImage("test.png")
     cs = love.graphics.newCanvas(width, height)
     cs2 = love.graphics.newCanvas(width, height)
+    thickness = 3;
+    my_sh:send("thickness", thickness)
+    t = 0
 end
 
 local function draw_grid()
@@ -31,9 +33,11 @@ end
 
 local function draw_cs()
   love.graphics.setCanvas(cs)
+  love.graphics.setColor(0, 0, 0, 1)
+  love.graphics.rectangle("fill", 0, 0, 800, 600)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(im, 0, 0)
-  draw_grid()
+  -- draw_grid()
   love.graphics.setShader(my_sh)
   love.graphics.setCanvas()
   love.graphics.draw(cs)
@@ -42,6 +46,12 @@ end
 
 function lib.draw()
   draw_cs()
+end
+
+function lib.update(dt)
+  t = t + dt
+  t = t % (thickness*2)
+  my_sh:send("shift", 10*t)
 end
 
 return lib

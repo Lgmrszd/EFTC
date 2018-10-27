@@ -1,11 +1,27 @@
+assets = require("assets")
+
 local scm = require("scenes_manager")
 local gui = require("gui")
 local Button = require("gui.Button")
 
 local main_menu = scm.Scene.new()
 
+local width = love.graphics.getWidth()
+local height = love.graphics.getHeight()
+local cs = love.graphics.newCanvas(width, height)
+
+function draw_bg()
+  local color = {love.graphics.getColor()}
+  -- love.graphics.setColor{0, 0, 0, 1}
+  love.graphics.rectangle("fill", 0, 0, width, height)
+  love.graphics.setColor{0, 0, 0, 1}
+  love.graphics.rectangle("fill", 0, height/2, width, height/2)
+  love.graphics.setColor(color)
+end
+
 function main_menu:init()
-  b1 = Button()
+  t = 0
+  local b1 = Button()
   b1:resize(800,10)
   b1:move(0, 100)
   b2 = Button()
@@ -26,7 +42,19 @@ function main_menu:init()
 end
 
 function main_menu:draw()
+  love.graphics.setCanvas(cs)
+  draw_bg()
   gui.draw()
+  love.graphics.setShader(assets.shaders.borders)
+  love.graphics.setCanvas()
+  love.graphics.draw(cs)
+  love.graphics.setShader()
+end
+
+function main_menu:update(dt)
+  t = t + dt
+  t = t % (assets.config.shader_th*2)
+  assets.shaders.borders:send("shift", 5*t)
 end
 
 return main_menu
