@@ -4,7 +4,7 @@ local scm = require("scenes_manager")
 local gui = require("gui")
 local Button = require("gui.Button")
 
-local main_menu = scm.Scene.new()
+local main_menu = scm.Scene()
 
 local width = love.graphics.getWidth()
 local height = love.graphics.getHeight()

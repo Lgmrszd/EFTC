@@ -2,15 +2,14 @@ local scm = {}
 
 local Scene = {}
 Scene.__index = Scene
-setmetatable(Scene, {__call = Scene.new})
+setmetatable(Scene, {
+  __call = function()
+    obj = setmetatable({data = {}}, Scene)
+    return obj
+  end
+})
 
 
-function Scene.new()
-  obj = {data = {}}
-  setmetatable(obj, Scene)
-  return obj
-end
-setmetatable(Scene, {__call = Scene.new})
 function Scene:update(dt) end
 function Scene:draw() end
 function Scene:init() end
