@@ -1,0 +1,3 @@
+[submodule "love2d-gui"]
+	path = love2d-gui
+	url = git@github.com:Lgmrszd/love2d-gui.git

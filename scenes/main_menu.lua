@@ -1,8 +1,8 @@
 assets = require("assets")
 
 local scm = require("scenes_manager")
-local gui = require("gui")
-local Button = require("gui.Button")
+local gui = require("love2d-gui")
+local Button = require("love2d-gui.Button")
 
 local main_menu = scm.Scene()
 
