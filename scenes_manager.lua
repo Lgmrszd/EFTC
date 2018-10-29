@@ -34,5 +34,11 @@ function scm.activate_scene(scene)
   current_scene.init()
 end
 
+function scm.init(scene)
+  love.update = scm.update
+  love.draw = scm.draw
+  scm.activate_scene(scene)
+end
+
 scm.Scene = Scene
 return scm
