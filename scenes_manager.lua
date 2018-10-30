@@ -15,6 +15,16 @@ function Scene:draw() end
 function Scene:init() end
 function Scene:destroy() end
 
+local scenes_stack = {}
+
+function scm.push_scene(scene)
+  table.insert(scenes_stack, scene)
+end
+
+function scm.pop_scene()
+  return table.remove(scenes_stack)
+end
+
 function scm.update(dt)
   if not current_scene then
     return
